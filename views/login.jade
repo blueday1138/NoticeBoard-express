@@ -1,13 +1,15 @@
 html
 body
-	h1 Login
-	form(name='login', method='post', action='/authentication')
-		label(for='email') Email:
-		br
-		input#email(name='email',type='text', placeholder='email-id', required='required')
-		br
-		label(for='password') Password:
-		br
-		input#password(name='password',type='password', placeholder='Enter password', required='required')
-		br
-		input(type='submit', value='Login')
+	extends links
+	block content
+		h1 Login
+		form(name='login', method='post', action='/authentication')
+			label(for='email') Email:
+			br
+			input#email(name='email',type='text', placeholder='email-id', required='required')
+			br
+			label(for='password') Password:
+			br
+			input#password(name='password',type='password', placeholder='Enter password', required='required')
+			br
+			input(type='submit', value='Login')

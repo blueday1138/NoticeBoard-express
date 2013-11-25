@@ -19,15 +19,13 @@ var users = {
 		"password":"digs"
 	}
 }
-
-
 var rememberUser = function(req,res){
 	res.cookie('email', unescape(req.body.email));
 	res.redirect('/home');
 };
 var isUserValid = function(email,password){
 	return users[email] && users[email].password == password;
-	};
+};
 var redirectToLoginIfLoggedOut = function(req,res){
 	if(!req.headers.cookie)
 		res.redirect('/login');
@@ -56,7 +54,7 @@ handlers.addNotice = function(req, res){
 	notices[noticeNumber]={};
 	notices[noticeNumber]["name"] = users[email].name;
 	notices[noticeNumber]["notice"] = query.notice;
-	res.render('home', { title: 'Home' ,notices: notices});
+	res.redirect('/home');
 };
 handlers.authentication = function(req, res){
 	var email = unescape(req.body.email);

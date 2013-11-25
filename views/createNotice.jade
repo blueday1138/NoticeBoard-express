@@ -1,10 +1,14 @@
 html
 body
-	h1 Create Notice
-	form#createnotice(name='createnotice',method='post',action='/addNotice')
-		label(for='notice') Notice 
+	extends links
+	block content
 		br
-		textarea#notice(name='notice',type='text', placeholder='Your notice', required='required')
+		a(href='./signout') SignOut
 		br
-		input(type='submit', value='Post Notice')
-	a(href='./signout') SignOut
+		h1 Create Notice
+		form#createnotice(name='createnotice',method='post',action='/addNotice')
+			label(for='notice') Notice 
+			br
+			textarea#notice(name='notice',type='text', placeholder='Your notice', required='required')
+			br
+			input(type='submit', value='Post Notice')
