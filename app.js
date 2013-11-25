@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
+app.use(express.cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 if ('development' == app.get('env')) {
@@ -24,11 +25,10 @@ if ('development' == app.get('env')) {
 
 app.get('/', handlers.login);
 app.get('/login', handlers.login);
-app.get('/users', user.list);
 app.get('/createNotice', handlers.createNotice);
 app.get('/home',handlers.home);
 
-app.post('/home',handlers.home);
+app.post('/authentication',handlers.authentication);
 app.post('/addNotice',handlers.addNotice);
 
 http.createServer(app).listen(app.get('port'), function(){

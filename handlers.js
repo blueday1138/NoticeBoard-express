@@ -1,4 +1,5 @@
 var handlers={};
+exports.handlers = handlers;
 // var library = require('./library').lib;
 var notices = {
 	"1":{
@@ -11,6 +12,20 @@ var notices = {
 		"name":"d!gv!j@y Gunjal",
 		"notice":"ndwle ef we!@#$"
 	}
+};
+var users = {
+	"dig@gmail.com":{
+		"name":"Digvijay",
+		"password":"digs"
+	}
+}
+
+var rememberUser = function(req,res){
+	res.cookie('email', req.body.email);
+	res.redirect('/home');
+};
+var isUserValid = function(email,password){
+	return users[email] && users[email].password == password;
 };
 
 handlers.addNotice = function(req,res){
@@ -33,4 +48,8 @@ handlers.addNotice = function(req, res){
 	notices[noticeNumber]["notice"] = query.notice;
 	res.render('home', { title: 'Home' ,notices: notices});
 };
-exports.handlers = handlers;
+handlers.authentication = function(req, res){
+	var email = req.body.email;
+	var password = req.body.password;
+	(isUserValid(email,password))?rememberUser(req,res):res.redirect('/login');
+};
