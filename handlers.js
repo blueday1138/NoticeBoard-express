@@ -20,28 +20,32 @@ var users = {
 	}
 }
 
+
 var rememberUser = function(req,res){
-	res.cookie('email', req.body.email);
+	res.cookie('email', unescape(req.body.email));
 	res.redirect('/home');
 };
 var isUserValid = function(email,password){
 	return users[email] && users[email].password == password;
+	};
+var redirectToLoginIfLoggedOut = function(req,res){
+	if(!req.headers.cookie)
+		res.redirect('/login');
 };
 
-handlers.addNotice = function(req,res){
-	console.log(req.body);
-}
+
 handlers.login = function(req, res){
 	res.render('login', { title: 'Login' });
 };
 handlers.home = function(req, res){
-	res.render('home', { title: 'Home' ,notices: notices});
+	redirectToLoginIfLoggedOut(req,res) ||
+		res.render('home', { title: 'Home' ,notices: notices});
 };
 handlers.createNotice = function(req, res){
-	res.render('createNotice', { title: 'CreateNotice' });
+	redirectToLoginIfLoggedOut(req,res) ||
+		res.render('createNotice', { title: 'CreateNotice' });
 };
 handlers.addNotice = function(req, res){
-	console.log("query",req.body);
 	var query = req.body;
 	var noticeNumber = Object.keys(notices).length+1;
 	notices[noticeNumber]={};
@@ -49,7 +53,7 @@ handlers.addNotice = function(req, res){
 	res.render('home', { title: 'Home' ,notices: notices});
 };
 handlers.authentication = function(req, res){
-	var email = req.body.email;
-	var password = req.body.password;
+	var email = unescape(req.body.email);
+	var password = unescape(req.body.password);
 	(isUserValid(email,password))?rememberUser(req,res):res.redirect('/login');
 };
