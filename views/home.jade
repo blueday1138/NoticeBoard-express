@@ -1,0 +1,9 @@
+html
+body
+	h1 Notice Board
+	-if(Object.keys(notices)>0)
+	-each val in notices
+		label(for=val) #{val.name}
+		br
+		textarea#val #{val.notice}
+		br
