@@ -27,6 +27,7 @@ app.get('/', handlers.login);
 app.get('/login', handlers.login);
 app.get('/createNotice', handlers.createNotice);
 app.get('/home',handlers.home);
+app.get('/signout',handlers.signout);
 
 app.post('/authentication',handlers.authentication);
 app.post('/addNotice',handlers.addNotice);

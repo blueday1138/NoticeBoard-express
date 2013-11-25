@@ -37,6 +37,10 @@ var redirectToLoginIfLoggedOut = function(req,res){
 handlers.login = function(req, res){
 	res.render('login', { title: 'Login' });
 };
+handlers.signout = function(req, res){
+	res.clearCookie('email');
+	res.redirect('/login');
+};
 handlers.home = function(req, res){
 	redirectToLoginIfLoggedOut(req,res) ||
 		res.render('home', { title: 'Home' ,notices: notices});
@@ -48,7 +52,9 @@ handlers.createNotice = function(req, res){
 handlers.addNotice = function(req, res){
 	var query = req.body;
 	var noticeNumber = Object.keys(notices).length+1;
+	var email = unescape(req.headers.cookie.split("=")[1]);
 	notices[noticeNumber]={};
+	notices[noticeNumber]["name"] = users[email].name;
 	notices[noticeNumber]["notice"] = query.notice;
 	res.render('home', { title: 'Home' ,notices: notices});
 };
