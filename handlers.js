@@ -1,36 +1,18 @@
 var handlers={};
 exports.handlers = handlers;
-// var library = require('./library').lib;
-var notices = {
-	"1":{
-		"timeStamp":"Tue Nov 19 2013 14:28:34 ",
-		"name":"d!gv!j@y",
-		"notice":"ndwle ef we!@#$"
-	},
-	"2":{
-		"timeStamp":"Tue Nov 19 2013 14:28:34 ",
-		"name":"d!gv!j@y Gunjal",
-		"notice":"ndwle ef we!@#$"
-	}
-};
-var users = {
-	"dig@gmail.com":{
-		"name":"Digvijay",
-		"password":"digs"
-	}
-}
+var lib = require('./library').lib;
+
 var rememberUser = function(req,res){
 	res.cookie('email', unescape(req.body.email));
 	res.redirect('/home');
 };
 var isUserValid = function(email,password){
-	return users[email] && users[email].password == password;
+	return lib.users[email] && lib.users[email].password == password;
 };
 var redirectToLoginIfLoggedOut = function(req,res){
 	if(!req.headers.cookie)
 		res.redirect('/login');
 };
-
 
 handlers.login = function(req, res){
 	res.render('login', { title: 'Login' });
@@ -41,7 +23,7 @@ handlers.signout = function(req, res){
 };
 handlers.home = function(req, res){
 	redirectToLoginIfLoggedOut(req,res) ||
-		res.render('home', { title: 'Home' ,notices: notices});
+		res.render('home', { title: 'Home' ,notices: lib.notices});
 };
 handlers.createNotice = function(req, res){
 	redirectToLoginIfLoggedOut(req,res) ||
@@ -49,11 +31,12 @@ handlers.createNotice = function(req, res){
 };
 handlers.addNotice = function(req, res){
 	var query = req.body;
-	var noticeNumber = Object.keys(notices).length+1;
+	var noticeNumber = Object.keys(lib.notices).length+1;
 	var email = unescape(req.headers.cookie.split("=")[1]);
-	notices[noticeNumber]={};
-	notices[noticeNumber]["name"] = users[email].name;
-	notices[noticeNumber]["notice"] = query.notice;
+	lib.notices[noticeNumber]={};
+	lib.notices[noticeNumber]["name"] = lib.users[email].name;
+	lib.notices[noticeNumber]["notice"] = query.notice;
+	lib.fs.writeFile('./database/notices');
 	res.redirect('/home');
 };
 handlers.authentication = function(req, res){
