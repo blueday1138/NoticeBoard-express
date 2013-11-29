@@ -1,31 +1,70 @@
 .links {
 	position: fixed;
-	border: 2px solid black;
+	top: 5px;
+	right:550px;
+	left:550px;
 	margin: 10px;
 	padding: 10px;
 }
 .home {
 	position: absolute;
-	top: 200px;
+	top :60px;
+	width: 1250px;
+	margin: 10px;
+	left :50px;
 }
-textarea {
-	background-color: yellow;
-	border: 2px solid black;
+.home h1 {
+	text-align: center;
+	margin: 3px;
+	padding: 3px;
+	font-size: 40px;
+}
+.inner {
+	float: left;
+	/*border: 1px solid black;*/
+	/*width : 400px;*/
+	margin: 5px;
+	border-radius: 5px;
+	background-color: #eeeeee;
+}
+.inner p {
+	text-align: left;
+	padding: 2px;
+	font-size: 20px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	margin-left: 10px
+}
+.inner textarea {
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 0px;
+	padding: 3px;
+	width: 380px;
+	font-size: 20px;
+	height: 220px;
+	border: 1px solid #dddddd;
+	background-color: #FAFAFA;
+	color: black;
+	border-radius: 4px;
 }
 a {
-	border: 2px solid black;
+	border-radius: 3px;
+  	background-color: #F2F2F2;
+  	border: #F4F4F4;
 	margin: 2px;
 	padding: 2px;
-	float: left;
+	padding-left: 5px;
 	font-size: 20px;
   	text-decoration:none;
   	color:#000000;
-}
-a:link {
+  	display: inline;
 }
 a:hover {
   background-color:#dddddd;
+  font-size: 22px;
 }
 a:visited {
   color:#000000;
-} 
+}
