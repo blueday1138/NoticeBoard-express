@@ -1,18 +1,21 @@
-var handlers={};
-exports.handlers = handlers;
 var lib = require('./library').lib;
+var users = lib.users;
+var record = lib.notices;
 
 var rememberUser = function(req,res){
 	res.cookie('email', unescape(req.body.email));
 	res.redirect('/home');
 };
 var isUserValid = function(email,password){
-	return lib.users[email] && lib.users[email].password == password;
+	return users[email] && users[email].password == password;
 };
 var redirectToLoginIfLoggedOut = function(req,res){
 	if(!req.headers.cookie)
 		res.redirect('/login');
 };
+
+var handlers={};
+exports.handlers = handlers;
 
 handlers.login = function(req, res){
 	res.render('login', { title: 'Login' });
@@ -23,7 +26,7 @@ handlers.signout = function(req, res){
 };
 handlers.home = function(req, res){
 	redirectToLoginIfLoggedOut(req,res) ||
-		res.render('home', { title: 'Home' ,notices: lib.notices});
+		res.render('home', { title: 'Home' ,notices: record});
 };
 handlers.createNotice = function(req, res){
 	redirectToLoginIfLoggedOut(req,res) ||
@@ -31,12 +34,12 @@ handlers.createNotice = function(req, res){
 };
 handlers.addNotice = function(req, res){
 	var query = req.body;
-	var noticeNumber = Object.keys(lib.notices).length+1;
+	var noticeNumber = Object.keys(record).length+1;
 	var email = unescape(req.headers.cookie.split("=")[1]);
-	lib.notices[noticeNumber]={};
-	lib.notices[noticeNumber]["name"] = lib.users[email].name;
-	lib.notices[noticeNumber]["notice"] = query.notice;
-	lib.fs.writeFile('./database/notices');
+	record[noticeNumber]={};
+	record[noticeNumber]["name"] = users[email].name;
+	record[noticeNumber]["notice"] = query.notice;
+	lib.fs.writeFile('./database/notices',JSON.stringify(record));
 	res.redirect('/home');
 };
 handlers.authentication = function(req, res){
