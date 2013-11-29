@@ -1,4 +1,10 @@
-a(href='/home') Home
-br
-a(href='/createnotice') Create Notice
-block content
+html
+head
+	title= title
+	link(rel='stylesheet', href='/stylesheets/style.css')
+body
+	div(class='links')
+		a(href='/home') Home
+		a(href='/createnotice') Create Notice
+		a(href='./signout') SignOut
+	block content

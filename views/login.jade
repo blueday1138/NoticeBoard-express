@@ -1,8 +1,8 @@
-html
-body
-	extends links
-	block content
+extends links
+block content
+	div(class='login')
 		h1 Login
+		hr
 		form(name='login', method='post', action='/authentication')
 			label(for='email') Email:
 			br

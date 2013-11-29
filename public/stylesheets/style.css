@@ -1,7 +1,31 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.links {
+	position: fixed;
+	border: 2px solid black;
+	margin: 10px;
+	padding: 10px;
+}
+.home {
+	position: absolute;
+	top: 200px;
+}
+textarea {
+	background-color: yellow;
+	border: 2px solid black;
 }
 a {
-  color: #00B7FF;
+	border: 2px solid black;
+	margin: 2px;
+	padding: 2px;
+	float: left;
+	font-size: 20px;
+  	text-decoration:none;
+  	color:#000000;
 }
+a:link {
+}
+a:hover {
+  background-color:#dddddd;
+}
+a:visited {
+  color:#000000;
+} 
