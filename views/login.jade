@@ -1,15 +1,15 @@
-extends links
+extends layout
 block content
 	div(class='login')
 		h1 Login
 		hr
 		form(name='login', method='post', action='/authentication')
-			label(for='email') Email:
+			p Email
+			input(name='email',type='text', placeholder='email', required='required')
 			br
-			input#email(name='email',type='text', placeholder='email-id', required='required')
 			br
-			label(for='password') Password:
+			p Password
+			input(name='password',type='password', placeholder='password', required='required')
 			br
-			input#password(name='password',type='password', placeholder='Enter password', required='required')
 			br
-			input(type='submit', value='Login')
+			input#button(name='button',type='submit', value='Login')
