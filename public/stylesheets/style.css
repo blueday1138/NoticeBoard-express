@@ -104,3 +104,44 @@ a:hover {
 a:visited {
   color:#000000;
 }
+.create {
+	position: absolute;
+	top :60px;
+	width: 1250px;
+	margin: 10px;
+	left :50px;
+	background-color: #f4f4f4;
+	border-radius: 10px;
+}
+.create h1 {
+	text-align: center;
+	margin-bottom: 10px;
+	margin-left: 100px;
+	margin-right: 100px;
+	padding: 10px;
+	font-size: 40px;
+	border-radius: 10px;
+	background-color: #dddddd;
+}
+.create textarea {
+	margin: 10px;
+	margin-left: 200px;
+	margin-top: 10px;
+	padding: 20px;
+	width: 800px;
+	font-size: 20px;
+	height: 500px;
+	border: 1px solid #dddddd;
+	background-color: #FAFAFA;
+	border-radius: 5px;
+}
+.create input {
+	margin-left: 200px;
+	margin-top: 10px;
+	width: 100px;
+	height: 30px;
+	background-color: #cccccc;
+}
+.create input:hover {
+	font-size: 17px;
+}

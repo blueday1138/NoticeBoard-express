@@ -1,10 +1,8 @@
 extends links
 block content
-	div
+	div(class='create')
 		h1 Create Notice
 		form#createnotice(name='createnotice',method='post',action='/addNotice')
-			label(for='notice') Notice 
-			br
-			textarea#notice(name='notice',type='text', placeholder='notice', required='required')
+			textarea#notice(name='notice',type='text', placeholder='Type youe Notice here.', required='required')
 			br
 			input(type='submit', value='Post Notice')
