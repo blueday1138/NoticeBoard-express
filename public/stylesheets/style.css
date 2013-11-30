@@ -1,8 +1,7 @@
 .links {
-	position: fixed;
+	position: absolute;
 	top: 5px;
-	right:550px;
-	left:550px;
+	left:540px;
 	margin: 10px;
 	padding: 10px;
 }
@@ -63,6 +62,7 @@
 	background-color: #F4F4F4;
 	border-radius: 5px;
 	padding: 10px;
+	text-align: center;
 }
 .login	p {
 	background-color: #F4F4F4;
@@ -96,10 +96,10 @@ a {
 	font-size: 20px;
   	text-decoration:none;
   	color:#000000;
+  	float: left;
 }
 a:hover {
   background-color:#dddddd;
-  font-size: 22px;
 }
 a:visited {
   color:#000000;
